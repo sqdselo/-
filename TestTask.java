@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class TestTask {
     static boolean flag = true;
-    static String[] array = {"#read", "#write", "#statistics", "#delete"};
+    static String[] array = {"#read", "#write", "#statistics", "#delete", "#search"};
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
@@ -33,6 +33,12 @@ public class TestTask {
                         System.out.println("Введите название плана, который хотите вычеркнуть из списка: ");
                         String deleteMessage = scan.nextLine();
                         Delete delete = new Delete(deleteMessage);
+                        break;
+
+                    case "#search":
+                        System.out.println("Введите название плана, который хотите найти: ");
+                        String searchMessage = scan.nextLine();
+                        Search search = new Search(searchMessage);
                         break;
                 }
             }
