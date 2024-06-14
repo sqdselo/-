@@ -12,7 +12,6 @@ public class TestTask {
             System.out.println("Введите команду: ");
             String currentCommand = scan.nextLine();
             if (Arrays.asList(array).contains(currentCommand)){
-
             }
             else{
                 System.out.println("Неверная команда. Попробуйте еще раз");
