@@ -1,14 +1,16 @@
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 public class TestTask {
     static boolean flag = true;
-    static String[] array = {"#read", "#write", "#statistics"};
+    static String[] array = {"#read", "#write", "#statistics", "#end"};
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
-        System.out.println("#write, #read, #statistics");
+        System.out.println("#write, #read, #statistics, #end");
         System.out.println("Важно! следите за правильностью написания команды");
         while(flag){
+            System.out.println();
             System.out.println("------------------------------------------------------------------------------");
             System.out.println("Введите команду: ");
             String currentCommand = scan.nextLine();
@@ -16,18 +18,22 @@ public class TestTask {
                 switch(currentCommand){
                     case "#read":
                         Read read = new Read();
-                        System.out.println("Считывание из файла");
                         break;
 
                     case "#write":
-                        Write write = new Write();
-                        System.out.println("Запись в файл");
+                        System.out.print("Введите ваши планы на сегодняшний день: ");
+                        String message = scan.nextLine();
+                        Write write = new Write(message);
                         break;
 
                     case "#statistics":
                         Statistics statistics = new Statistics();
                         System.out.println("Статистика ");
                         break;
+
+                    case "#end":
+                        Write write2 = new Write();
+                        System.exit(0);
                 }
             }
             else{
