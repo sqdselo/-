@@ -1,16 +1,15 @@
-import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 public class TestTask {
     static boolean flag = true;
-    static String[] array = {"#read", "#write", "#statistics", "#end"};
+    static String[] array = {"#read", "#write", "#statistics", "#delete"};
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
-        System.out.println("#write, #read, #statistics, #end");
+        System.out.println("#write, #read, #statistics, #delete");
         System.out.println("Важно! следите за правильностью написания команды");
+        Write writeEnd = new Write();
         while(flag){
-            System.out.println();
             System.out.println("------------------------------------------------------------------------------");
             System.out.println("Введите команду: ");
             String currentCommand = scan.nextLine();
@@ -28,12 +27,13 @@ public class TestTask {
 
                     case "#statistics":
                         Statistics statistics = new Statistics();
-                        System.out.println("Статистика ");
                         break;
 
-                    case "#end":
-                        Write write2 = new Write();
-                        System.exit(0);
+                    case "#delete":
+                        System.out.println("Введите название плана, который хотите вычеркнуть из списка: ");
+                        String deleteMessage = scan.nextLine();
+                        Delete delete = new Delete(deleteMessage);
+                        break;
                 }
             }
             else{
