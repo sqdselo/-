@@ -2,11 +2,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class TestTask {
     static boolean flag = true;
-    static String[] array = {"#read", "#write", "#statistics", "#delete", "#search"};
+    static String[] array = {"#read", "#write", "#statistics", "#delete", "#search", "#change"};
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
-        System.out.println("#write, #read, #statistics, #delete");
+        System.out.println("#write, #read, #statistics, #delete, #search, #change");
         System.out.println("Важно! следите за правильностью написания команды");
         Write writeEnd = new Write();
         while(flag){
@@ -36,9 +36,23 @@ public class TestTask {
                         break;
 
                     case "#search":
-                        System.out.println("Введите название плана, который хотите найти: ");
+                        System.out.println("Введите описание плана, который хотите найти: ");
                         String searchMessage = scan.nextLine();
                         Search search = new Search(searchMessage);
+                        break;
+
+                    case "#change":
+                        System.out.println("Укажите описание плана, который хотите изменить: ");
+                        String changeMessage = scan.nextLine();
+                        System.out.println("Что именно вы хотите изменить?");
+                        System.out.println("---------");
+                        System.out.println("1: Заголовок ");
+                        System.out.println("2: Описание ");
+                        System.out.println("3: Маркер ");
+                        System.out.println("---------");
+                        int n = scan.nextInt();
+                        int vibor = (n == 3 ? n+2 : n);
+                        Change change = new Change(changeMessage, vibor);
                         break;
                 }
             }
