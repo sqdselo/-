@@ -39,7 +39,7 @@ public class Change {
                     LocalDate localDate = LocalDate.now();
                     LocalTime localTime = LocalTime.now();
                     LocalTime localTime2 = localTime.truncatedTo(ChronoUnit.SECONDS);
-                    words[3] = String.valueOf(localDate) +" "+String.valueOf(localTime2);
+                    words[3] = (localDate) +" "+ (localTime2);
                     list.add(String.join(" ; ", words));
                 }
                 else{
