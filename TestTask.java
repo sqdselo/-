@@ -8,7 +8,7 @@ public class TestTask {
         System.out.println("Доступные команды для использования: ");
         System.out.println("#write, #read, #statistics, #delete, #search, #change");
         System.out.println("Запись происходит так: Заголовок ; Описание дела ; Дата создания ; Дата редактирования ; Выполнена ли цель");
-        System.out.println("Важно! следите за правильностью написания команды");
+        System.out.println("Важно! следите за правильностью написания команды. Не нужно использовать пробелы до и после команды");
         Write writeEnd = new Write();
         while(flag){
             System.out.println("------------------------------------------------------------------------------");
@@ -42,19 +42,22 @@ public class TestTask {
                     case "#delete":
                         System.out.println("Введите описание плана, который хотите вычеркнуть из списка: ");
                         String deleteMessage = scan.nextLine();
-                        Delete delete = new Delete(deleteMessage);
+                        Search searchForDelete = new Search(deleteMessage, 0);
+                        if(searchForDelete.flag){
+                            Delete delete = new Delete(deleteMessage);
+                        }
                         break;
 
                     case "#search":
                         System.out.println("Введите описание плана, который хотите найти: ");
                         String searchMessage = scan.nextLine();
-                        Search search = new Search(searchMessage);
+                        Search search = new Search(searchMessage, 1);
                         break;
 
                     case "#change":
                         System.out.println("Укажите описание плана, который хотите изменить: ");
                         String changeMessage = scan.nextLine();
-                        Search search2 = new Search(changeMessage);
+                        Search search2 = new Search(changeMessage, 0);
                         if(search2.flag){
                             System.out.println("Что именно вы хотите изменить?");
                             System.out.println("---------");

@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.Map;
 
 public class Statistics {
+    SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
     public static Map<String, Integer> dict;
     public Statistics(){
         try {
@@ -16,7 +17,7 @@ public class Statistics {
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(" ; ");
+                String[] words = simpleObfuscation.decode(line).split(" ; ");
                 dict.put(words[2], 1);
             }
             int maxCountForDay = -1;

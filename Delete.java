@@ -5,14 +5,14 @@ import java.util.List;
 public class Delete {
 
     public Delete(String deleteMessage) {
+        SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
         List<String> list = new ArrayList<>();
-        FileReader read = null;
         try {
-            read = new FileReader("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt");
+            FileReader read = new FileReader("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt");
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(";");
+                String[] words = (simpleObfuscation.decode(line)).split(";");
                 if(words.length > 1 && !words[1].equals(" " + deleteMessage + " ") ){
                     list.add(line);
                 }

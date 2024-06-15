@@ -4,17 +4,21 @@ import java.io.IOException;
 
 public class Search {
     public boolean flag;
-    public Search(String searchMessage){
+    SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
+    public Search(String searchMessage, int operation){
         flag = false;
         try {
             FileReader read = new FileReader("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt");
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(";");
+                String[] words = simpleObfuscation.decode(line).split(";");
                 if(words.length > 1 && words[1].trim().equals(searchMessage.trim())){
                     flag = true;
-                    System.out.println("Ваша строка: " + line);
+                    if(operation != 0){
+                        System.out.println("Ваша строка: " + simpleObfuscation.decode(line));
+                    }
+
                 }
             }
         } catch (IOException e) {

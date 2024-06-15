@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class Write {
+    SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
     public static int countWrite = 0;
     public Write(){
         try {
@@ -21,7 +22,8 @@ public class Write {
                 LocalTime localTime = LocalTime.now();
                 LocalTime localTime2 = localTime.truncatedTo(ChronoUnit.SECONDS);
                 FileWriter writer = new FileWriter("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt", true);
-                writer.write(headerMessage + " ; " + descriptionMessage + " ; " + localDate +" "+ localTime2 + " ; " + localDate+" "+ localTime2 + " ; " + flagMessage + "\n");
+                String lineForWrite = simpleObfuscation.encode(headerMessage + " ; " + descriptionMessage + " ; " + localDate + " " + localTime2 + " ; " + localDate + " " + localTime2 + " ; " + flagMessage);
+                writer.write( lineForWrite + "\n");
                 countWrite += 1;
                 writer.close();
             }
@@ -39,7 +41,7 @@ public class Write {
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(";");
+                String[] words = simpleObfuscation.decode(line).split(";");
                 if(words.length > 1 && words[1].trim().equals(descriptionMessage.trim())){
                     return true;
                 }

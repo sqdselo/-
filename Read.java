@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Read {
+    SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
     public Read(){
         try {
             FileReader read = new FileReader("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt");
@@ -10,7 +11,7 @@ public class Read {
             String line;
             int count = 0;
             while((line = bufferedReader.readLine()) != null){
-                System.out.println(line);
+                System.out.println(simpleObfuscation.decode(line));
                 count += 1;
             }
             if(count == 0){

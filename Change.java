@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 public class Change {
     Scanner scan = new Scanner(System.in);
+    SimpleObfuscation simpleObfuscation = new SimpleObfuscation();
     public Change(String changeMessage, int n){
         try {
             n--;
@@ -19,7 +20,7 @@ public class Change {
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(" ; ");
+                String[] words = simpleObfuscation.decode(line).split(" ; ");
                 if(words.length > 1 && words[1].trim().equals(changeMessage.trim())){
                     if(n == 0){
                         System.out.print("Введите новый заголовок для вашего плана: ");
@@ -43,14 +44,14 @@ public class Change {
                     list.add(String.join(" ; ", words));
                 }
                 else{
-                    list.add(line);
+                    list.add(simpleObfuscation.decode(line));
                 }
             }
             bufferedReader.close();
             read.close();
             FileWriter writer = new FileWriter("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt", false);
             for(int i = 0 ; i < list.size(); i++){
-                writer.write(list.get(i) + "\n");
+                writer.write(simpleObfuscation.encode(list.get(i)) + "\n");
             }
             writer.close();
 
