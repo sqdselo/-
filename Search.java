@@ -3,8 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Search {
+    public boolean flag;
     public Search(String searchMessage){
-        boolean flag = false;
+        flag = false;
         try {
             FileReader read = new FileReader("D:\\Test\\тестик\\ФайлДляХраненияДанных.txt");
             BufferedReader bufferedReader = new BufferedReader(read);

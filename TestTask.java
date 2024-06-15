@@ -7,6 +7,7 @@ public class TestTask {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
         System.out.println("#write, #read, #statistics, #delete, #search, #change");
+        System.out.println("Запись происходит так: Заголовок ; Описание дела ; Дата создания ; Дата редактирования ; Выполнена ли цель");
         System.out.println("Важно! следите за правильностью написания команды");
         Write writeEnd = new Write();
         while(flag){
@@ -20,9 +21,18 @@ public class TestTask {
                         break;
 
                     case "#write":
-                        System.out.print("Введите ваши планы на сегодняшний день: ");
-                        String message = scan.nextLine();
-                        Write write = new Write(message);
+                        System.out.println("Введите заголовок вашей цели");
+                        String headerMessage = scan.nextLine();
+                        System.out.println("Введите описание вашей цели на сегодняшний день: ");
+                        String descriptionMessage = scan.nextLine();
+                        System.out.println("Ваша цель выполнена? Да/Нет");
+                        String flagMessage = scan.nextLine();
+                        if(flagMessage.equals("Да") || flagMessage.equals("Нет")){
+                            Write write = new Write(headerMessage, descriptionMessage, flagMessage);
+                        }
+                        else{
+                            System.out.println("Не все данные введены верно");
+                        }
                         break;
 
                     case "#statistics":
@@ -30,7 +40,7 @@ public class TestTask {
                         break;
 
                     case "#delete":
-                        System.out.println("Введите название плана, который хотите вычеркнуть из списка: ");
+                        System.out.println("Введите описание плана, который хотите вычеркнуть из списка: ");
                         String deleteMessage = scan.nextLine();
                         Delete delete = new Delete(deleteMessage);
                         break;
@@ -44,15 +54,17 @@ public class TestTask {
                     case "#change":
                         System.out.println("Укажите описание плана, который хотите изменить: ");
                         String changeMessage = scan.nextLine();
-                        System.out.println("Что именно вы хотите изменить?");
-                        System.out.println("---------");
-                        System.out.println("1: Заголовок ");
-                        System.out.println("2: Описание ");
-                        System.out.println("3: Маркер ");
-                        System.out.println("---------");
-                        int n = scan.nextInt();
-                        int vibor = (n == 3 ? n+2 : n);
-                        Change change = new Change(changeMessage, vibor);
+                        Search search2 = new Search(changeMessage);
+                        if(search2.flag){
+                            System.out.println("Что именно вы хотите изменить?");
+                            System.out.println("---------");
+                            System.out.println("1: Заголовок ");
+                            System.out.println("2: Описание ");
+                            System.out.println("3: Маркер ");
+                            System.out.println("---------");
+                            int n = Integer.parseInt(scan.nextLine());
+                            Change change = new Change(changeMessage, n);
+                        }
                         break;
                 }
             }

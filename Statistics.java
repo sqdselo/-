@@ -16,8 +16,8 @@ public class Statistics {
             BufferedReader bufferedReader = new BufferedReader(read);
             String line;
             while((line = bufferedReader.readLine()) != null){
-                String[] words = line.split(";");
-                dict.put(words[0], 1);
+                String[] words = line.split(" ; ");
+                dict.put(words[2], 1);
             }
             int maxCountForDay = -1;
             String maxDay = "";
@@ -26,7 +26,7 @@ public class Statistics {
                     maxCountForDay = i;
                     for(String key : dict.keySet()){
                         if(dict.get(key) == maxCountForDay){
-                            maxDay = key;
+                            maxDay = key.split(" ")[0];
                         }
                     }
                 }
