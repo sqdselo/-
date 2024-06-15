@@ -1,12 +1,13 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 public class TestTask {
     static boolean flag = true;
-    static String[] array = {"#read", "#write", "#statistics", "#delete", "#search", "#change"};
+    static String[] array = {"#read", "#write", "#statistics", "#delete", "#search", "#change", "#datesearch"};
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Доступные команды для использования: ");
-        System.out.println("#write, #read, #statistics, #delete, #search, #change");
+        System.out.println("#write, #read, #statistics, #delete, #search, #change, #datesearch");
         System.out.println("Запись происходит так: Заголовок ; Описание дела ; Дата создания ; Дата редактирования ; Выполнена ли цель");
         System.out.println("Важно! следите за правильностью написания команды. Не нужно использовать пробелы до и после команды");
         Write writeEnd = new Write();
@@ -68,6 +69,13 @@ public class TestTask {
                             int n = Integer.parseInt(scan.nextLine());
                             Change change = new Change(changeMessage, n);
                         }
+                        break;
+
+                    case "#datesearch":
+                        System.out.println("Напишите дату в формате 'ГГГГ.ММ.ДД'");
+                        LocalDate date = LocalDate.parse(scan.nextLine());
+                        System.out.println("Все данные по вашей дате:");
+                        SearchDate searchDate = new SearchDate(date);
                         break;
                 }
             }
